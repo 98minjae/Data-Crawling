@@ -6,10 +6,11 @@ from urllib.request import urlopen
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 
+# 크롬의 여러가지 설정 사용
 chrome_options = webdriver.ChromeOptions()
-chrome_options.add_argument('--headless')
-chrome_options.add_argument('--no-sandbox')
-chrome_options.add_argument('--disable-dev-shm-usage')
+chrome_options.add_argument('--headless') # 창 없이
+chrome_options.add_argument('--no-sandbox') # 보안 기능 비활성화
+chrome_options.add_argument('--disable-dev-shm-usage') # 공유 메모리 담당하는 디렉토리 사용 x
 
 
 keyword = input('수집할 이미지 입력 : ')
@@ -22,8 +23,8 @@ except OSError:
   print('Error : Creating directory.' + path)
 
 driver = webdriver.Chrome('C:/Users/Min/AppData/Roaming/JetBrains/PyCharmCE2021.1/scratches/chromedriver.exe', options=chrome_options)
-driver.get("https://www.google.co.kr/imghp?hl=ko&ogbl")
-elem = driver.find_element_by_name("q")
+driver.get("https://www.google.co.kr/imghp?hl=ko&ogbl") # 구글 이미지
+elem = driver.find_element_by_name("q") # 서치 박스 커서 위치 설정
 elem.send_keys(keyword)
 elem.send_keys(Keys.RETURN)
 
